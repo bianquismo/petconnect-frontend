@@ -1,6 +1,7 @@
 {
     "conventionalCommits.scopes": [
         "PWA",
-        "HomePage"
+        "HomePage",
+        "Button&Input"
     ]
 }

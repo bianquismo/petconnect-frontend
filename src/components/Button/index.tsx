@@ -6,11 +6,9 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export const Button: FC<ButtonProps> =
     ({ children, ...props }) => {
-        const primaryGreen = "#BAD36D";
-
         return (
             <div>
-                <button {...props} className={`w-full bg-[${primaryGreen}] text-black font-bold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:${primaryGreen}`}>{children}</button>
+                <button {...props} className={`w-full bg-[#BAD36D] text-black font-bold py-2 px-4 rounded-md focus:outline-none`}>{children}</button>
             </div>
         )
     }

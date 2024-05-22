@@ -1,6 +1,8 @@
 import Image from 'next/image';
-import { Input } from './components/Input';
-import { Button } from './components/Button';
+import Link from 'next/link'
+
+import { Input } from '../components/Input';
+import { Button } from '../components/Button';
 
 export default function HomePage() {
   const primaryGreen = "#BAD36D"
@@ -30,8 +32,8 @@ export default function HomePage() {
           </Button>
         </form>
         <div className="flex flex-col items-center mt-4">
-          <a href="#" className="text-sm font-light text-[#BAD36D] mx-2">recuperar senha</a>
-          <a href="#" className="text-sm font-light text-[#BAD36D] mx-2">criar conta</a>
+          <Link href="#" className="text-sm font-light text-[#BAD36D] mx-2">recuperar senha</Link>
+          <Link href="/signup" className="text-sm font-light text-[#BAD36D] mx-2">criar conta</Link>
         </div>
       </div>
     </div>
