@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 import { useForm, SubmitHandler } from "react-hook-form";
 
@@ -15,7 +16,13 @@ export interface LoginForm {
 
 export default function HomePage() {
   const { register, handleSubmit, watch, formState: { errors } } = useForm<LoginForm>();
-  const onSubmit: SubmitHandler<LoginForm> = data => console.log(data);
+
+  const router = useRouter();
+
+  const onSubmit: SubmitHandler<LoginForm> = data => {
+    console.log(data)
+    router.push('/dashboard');
+  };
 
   const primaryGreen = "#BAD36D"
 
