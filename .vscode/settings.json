@@ -3,6 +3,8 @@
         "PWA",
         "HomePage",
         "Button&Input",
-        "signup"
+        "signup",
+        "react-hook-form",
+        "Dashboard"
     ]
 }
