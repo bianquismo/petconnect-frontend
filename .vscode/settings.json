@@ -2,6 +2,7 @@
     "conventionalCommits.scopes": [
         "PWA",
         "HomePage",
-        "Button&Input"
+        "Button&Input",
+        "signup"
     ]
 }
