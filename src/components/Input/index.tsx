@@ -1,15 +1,20 @@
+import { LoginForm } from '@/app/page';
 import { Inputs } from '@/app/signup/pet-shop/page';
 import React, { FC, InputHTMLAttributes } from 'react'
-import { FieldValues, UseFormRegister } from 'react-hook-form'
+import { UseFormRegister } from 'react-hook-form'
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-    label?: string;
-    htmlFor?: string;
-    register: UseFormRegister<Inputs>;
-    name: keyof Inputs;
+interface FormProps<T> {
+    [key: string]: any;
 }
 
-export const Input: FC<InputProps> =
+interface InputProps<T extends FormProps<T>> extends Omit<InputHTMLAttributes<HTMLInputElement>, 'name'> {
+    label?: string;
+    htmlFor?: string;
+    register: UseFormRegister<T>;
+    name: keyof T;
+}
+
+export const Input: FC<InputProps<any>> =
     ({ label, htmlFor, register, name, ...props }) => {
         const primaryGreen = "#BAD36D"
 
@@ -19,7 +24,7 @@ export const Input: FC<InputProps> =
                     {label}
                 </label>
                 <input
-                    {...register(name)}
+                    {...register(String(name))}
                     {...props}
                     className={`mt-1 block w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:${primaryGreen} focus:${primaryGreen} text-lg placeholder-[#BFBFBF] border-[${primaryGreen}] text-[#949494]`}
                     placeholder="Enter your email"
