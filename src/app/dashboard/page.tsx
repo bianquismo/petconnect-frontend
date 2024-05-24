@@ -1,6 +1,6 @@
 import { DashboardContainer } from "@/components/Dashboard";
 import { Footer } from "@/components/Footer";
-import { Navbar } from "@/components/Navbard";
+import { Navbar } from "@/components/Navbar";
 
 export default function DashboardPage() {
     return (
