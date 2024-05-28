@@ -3,7 +3,7 @@
 import { Button } from '@/components/Button';
 import { Input } from '@/components/Input';
 import Link from 'next/link';
-
+import { useRouter } from 'next/navigation';
 import { useForm, SubmitHandler } from "react-hook-form";
 
 export type Inputs = {
@@ -11,12 +11,36 @@ export type Inputs = {
     address: string,
     phoneNumber: string,
     openHours: string,
-    petshopLogo: FileList,
+    rating: number,
 };
 
 export default function SignupPetShopPage() {
     const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
-    const onSubmit: SubmitHandler<Inputs> = data => console.log(data);
+
+    const router = useRouter();
+
+    const onSubmit: SubmitHandler<Inputs> = async data => {
+        const formData = new FormData();
+        formData.append('pet_shop[name]', data.name);
+        formData.append('pet_shop[address]', data.address);
+        formData.append('pet_shop[phone_number]', data.phoneNumber);
+        formData.append('pet_shop[open_hours]', data.openHours);
+        formData.append('pet_shop[rating]', data.rating.toString());
+
+        const response = await postData(formData);
+
+        router.push(`/petshops/${response.id}`)
+    };
+
+    async function postData(formData: FormData) {
+        const response = await fetch('http://localhost:8080/pet_shops', {
+            method: "POST",
+            body: formData,
+        });
+
+        const result = await response.json();
+        return result;
+    }
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-gray-100">
@@ -39,14 +63,10 @@ export default function SignupPetShopPage() {
                         id="openHours"
                         register={register} placeholder="08:00 às 19:00"
                         required />
-                    <Input label='Logotipo da Empresa' htmlFor="petshopLogo" type="file" name="petshopLogo"
-                        id="petshopLogo"
-                        register={register} placeholder="nenhum arquivo selecionado"
+                    <Input className='px-0' label='Nota' htmlFor="rating" type="range" min={1} max={5} name="rating"
+                        id="rating" register={register}
                         required />
-                    <Button
-                        type="submit">
-                        cadastrar
-                    </Button>
+                    <Button type="submit">cadastrar</Button>
                 </form>
                 <div className="flex flex-col items-center mt-4">
                     <Link href="/" className="text-sm font-light text-[#BAD36D] mx-2">início</Link>

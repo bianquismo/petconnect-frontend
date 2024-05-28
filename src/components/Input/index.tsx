@@ -12,10 +12,11 @@ interface InputProps<T extends FormProps<T>> extends Omit<InputHTMLAttributes<HT
     htmlFor?: string;
     register: UseFormRegister<T>;
     name: keyof T;
+    className?: string;
 }
 
 export const Input: FC<InputProps<any>> =
-    ({ label, htmlFor, register, name, ...props }) => {
+    ({ label, htmlFor, register, name, className, ...props }) => {
         const primaryGreen = "#BAD36D"
 
         return (
@@ -26,8 +27,8 @@ export const Input: FC<InputProps<any>> =
                 <input
                     {...register(String(name))}
                     {...props}
-                    className={`mt-1 block w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:${primaryGreen} focus:${primaryGreen} text-lg placeholder-[#BFBFBF] border-[${primaryGreen}] text-[#949494]`}
-                    placeholder="Enter your email"
+                    className={`mt-1 block w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:${primaryGreen} focus:${primaryGreen} text-lg placeholder-[#BFBFBF] border-[${primaryGreen}] text-[#949494] ${className}`}
+                    placeholder={props.placeholder}
                     required
                 />
             </div>

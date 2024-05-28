@@ -3,68 +3,28 @@ import { Navbar } from "@/components/Navbar";
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
 
-const petShops = [
-    {
-        imgSrc: '/assets/petshop_listitem_1.png',
-        name: 'Pet Shop 1',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-        id: 1,
-        openHours: '08:00 às 18:00',
-        phoneNumber: '(11)XXXX-XXXX',
-        rating: 4
-    },
-    {
-        imgSrc: '/assets/petshop_listitem_2.png',
-        name: 'Pet Shop 2',
-        description: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-        id: 2,
-        openHours: '08:00 às 18:00',
-        phoneNumber: '(11)XXXX-XXXX',
-        rating: 5
-    },
-    {
-        imgSrc: '/assets/petshop_listitem_3.png',
-        name: 'Pet Shop 3',
-        description: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
-        id: 3,
-        openHours: '08:00 às 18:00',
-        phoneNumber: '(11)XXXX-XXXX',
-        rating: 3
-    },
-    {
-        imgSrc: '/assets/petshop_listitem_4.png',
-        name: 'Pet Shop 4',
-        description: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
-        id: 4,
-        openHours: '08:00 às 18:00',
-        phoneNumber: '(11)XXXX-XXXX',
-        rating: 3
-    },
-    {
-        imgSrc: '/assets/petshop_listitem_5.png',
-        name: 'Pet Shop 5',
-        description: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
-        id: 5,
-        openHours: '08:00 às 18:00',
-        phoneNumber: '(11)XXXX-XXXX',
-        rating: 3
-    },
-    {
-        imgSrc: '/assets/petshop_listitem_6.png',
-        name: 'Pet Shop 6',
-        description: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
-        id: 6,
-        openHours: '08:00 às 18:00',
-        phoneNumber: '(11)XXXX-XXXX',
-        rating: 3
-    },
-];
+async function getData(id: number) {
+    const res = await fetch(`http://localhost:8080/pet_shops/${id}`, {
+        cache: 'no-store'
+    })
+    // The return value is *not* serialized
+    // You can return Date, Map, Set, etc.
 
-export default function PetShopItemPage({ params }: { params: { id: number } }) {
+    const data = await res.json();
+
+    if (!res.ok) {
+        // This will activate the closest `error.js` Error Boundary
+        throw new Error('Failed to fetch data')
+    }
+
+    return data;
+}
+
+export default async function PetShopItemPage({ params }: { params: { id: number } }) {
     const { id } = params;
 
     // Fetch the pet shop data based on the id (In real implementation, you might fetch from an API)
-    const petShop = petShops.find((shop) => shop.id === Number(id));
+    const petShop = await getData(id);
 
     if (!petShop) {
         return <div>Pet Shop not found</div>;
@@ -78,7 +38,7 @@ export default function PetShopItemPage({ params }: { params: { id: number } }) 
                 <div className="flex items-start mb-4">
                     <div className="relative w-24 h-24 flex-shrink-0">
                         <Image
-                            src={petShop.imgSrc}
+                            src='/assets/brand.png'
                             alt={petShop.name}
                             layout="fill"
                             objectFit="cover"
@@ -99,9 +59,9 @@ export default function PetShopItemPage({ params }: { params: { id: number } }) 
                 </div>
 
                 <div className="mb-4">
-                    <p className="text-sm text-gray-700">{petShop.description}</p>
-                    <p className="text-sm text-gray-700 mt-2"><strong>Horário de Funcionamento:</strong> {petShop.openHours}</p>
-                    <p className="text-sm text-gray-700 mt-2"><strong>Telefone:</strong> {petShop.phoneNumber}</p>
+                    <p className="text-sm text-gray-700">{petShop.address}</p>
+                    <p className="text-sm text-gray-700 mt-2"><strong>Horário de Funcionamento:</strong> {petShop.open_hours}</p>
+                    <p className="text-sm text-gray-700 mt-2"><strong>Telefone:</strong> {petShop.phone_number}</p>
                 </div>
 
                 <div className="mt-auto mb-10 mx-4">

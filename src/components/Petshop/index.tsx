@@ -21,7 +21,6 @@ export const PetShopList: FC<PetShopListProps> = ({ petShops }) => {
 
 interface PetShopItemProps {
     item: {
-        imgSrc: string;
         name: string;
         address: string;
         rating: number;
@@ -30,7 +29,7 @@ interface PetShopItemProps {
 }
 
 const PetShopItem: FC<PetShopItemProps> = ({ item }) => {
-    const { imgSrc, name, address, rating, id } = item;
+    const { name, address, rating, id } = item;
     console.log(item);
     
     return (
@@ -38,7 +37,7 @@ const PetShopItem: FC<PetShopItemProps> = ({ item }) => {
             <Link className="flex items-center p-2 bg-zinc-100 shadow-lg rounded-md border-slate-900 mb-4" href={`/petshops/${id}`}>
                 <div className="relative w-20 h-20 flex-shrink-0">
                     <Image
-                        src={"/assets/petshop_listitem_1.png"}
+                        src='/assets/brand.png'
                         alt={name}
                         layout="fill"
                         objectFit="cover"
