@@ -20,9 +20,19 @@ export default function HomePage() {
   const router = useRouter();
 
   const onSubmit: SubmitHandler<LoginForm> = data => {
-    console.log(data)
-    router.push('/dashboard');
+    console.log(data);
+    router.push('/dashboard')
   };
+
+  // async function postData(formData: FormData) {
+  //   const response = await fetch('http://localhost:8080/login', {
+  //     method: "POST",
+  //     body: formData,
+  //   });
+
+  //   const result = await response.json();
+  //   return result;
+  // }
 
   const primaryGreen = "#BAD36D"
 

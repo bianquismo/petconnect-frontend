@@ -2,10 +2,6 @@ import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import { PetShopList } from "@/components/Petshop";
 
-interface PetShopPageProps {
-    petShops: []
-}
-
 async function getData() {
     const res = await fetch('http://localhost:8080/pet_shops', {
         cache: 'no-store'
