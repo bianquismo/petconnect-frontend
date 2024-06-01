@@ -5,6 +5,12 @@
         "Button&Input",
         "signup",
         "react-hook-form",
-        "Dashboard"
+        "Dashboard",
+        "Navbar",
+        "Petshops",
+        "PetShopList",
+        "Petshop:id page",
+        "adoption",
+        "signup user"
     ]
 }

@@ -1,6 +1,7 @@
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
 import Image from "next/image";
+import Link from "next/link";
 import { FaStar } from "react-icons/fa";
 
 async function getData(id: number) {
@@ -20,7 +21,7 @@ async function getData(id: number) {
     return data;
 }
 
-export default async function PetShopItemPage({ params }: { params: { id: number } }) {
+export default async function BathItemPage({ params }: { params: { id: number } }) {
     const { id } = params;
 
     // Fetch the pet shop data based on the id (In real implementation, you might fetch from an API)
@@ -62,6 +63,14 @@ export default async function PetShopItemPage({ params }: { params: { id: number
                     <p className="text-sm text-gray-700">{petShop.address}</p>
                     <p className="text-sm text-gray-700 mt-2"><strong>Horário de Funcionamento:</strong> {petShop.open_hours}</p>
                     <p className="text-sm text-gray-700 mt-2"><strong>Telefone:</strong> {petShop.phone_number}</p>
+                </div>
+
+                <div className="mt-auto mb-10 mx-4">
+                    <Link href={`/bath/${id}/book`}>
+                        <button className="w-full align-center bg-[#BAD36D] text-white py-3 rounded-md text-sm font-bold mt-6">
+                            Reservar Hora
+                        </button>
+                    </Link>
                 </div>
             </div>
 
