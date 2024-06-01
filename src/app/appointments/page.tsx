@@ -20,7 +20,7 @@ async function fetchData(userId: number) {
 
 export default function AppointmentPage() {
     const [appointments, setAppointments] = useState<AppointmentListItem[]>([]);
-    const userId = 3; // Assume the user ID is 3
+    const userId = 5; // Assume the user ID is 3
 
     const loadAppointments = async () => {
         try {
