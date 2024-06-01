@@ -29,7 +29,7 @@ export const BookBathContainer: FC<BookBathContainerProps> = ({ petshopData, id}
     const onSubmit: SubmitHandler<Inputs> = async data => {
         const formData = new FormData();
         formData.append('appointment[pet_shop_id]', String(id));
-        formData.append('appointment[user_id]', String(1));
+        formData.append('appointment[user_id]', String(4));
         formData.append('appointment[time]', data.booking_time);
 
         const response = await postData(formData);
