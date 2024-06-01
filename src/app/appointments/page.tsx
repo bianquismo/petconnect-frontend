@@ -36,7 +36,7 @@ export default function AppointmentPage() {
     }, []);
 
     return (
-        <div className="flex flex-col min-h-screen bg-gray-100">
+        <div className="flex flex-col min-h-screen h-screen bg-gray-100">
             <Navbar />
             <AppointmentList appointmentData={appointments} refreshData={loadAppointments} />
             <Footer />

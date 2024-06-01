@@ -11,7 +11,7 @@ interface EditBookingContainerProps {
         id: number,
         name: string,
         address: string
-        
+
     },
     id: number
 }
@@ -22,7 +22,7 @@ export type Inputs = {
     booking_time: string,
 };
 
-export const EditBookingContainer: FC<EditBookingContainerProps> = ({ petshopData, id}) => {
+export const EditBookingContainer: FC<EditBookingContainerProps> = ({ petshopData, id }) => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
 
     const router = useRouter();
@@ -53,9 +53,12 @@ export const EditBookingContainer: FC<EditBookingContainerProps> = ({ petshopDat
     }
 
     return (
-        <div className="flex-1 overflow-y-auto p-2">
-            <h2>Editar Agendamento</h2>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-2">
+        <div className="flex-1 overflow-y-auto p-4 bg-gray-100">
+            <div className="w-full max-w-md">
+                <h1 className={`text-center text-[#BAD36D] font-light text-2xl mb-8`}>
+                    EDITAR AGENDAMENTO
+                </h1>
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-2">
                     <Input label='Pet Shop' htmlFor="name" type="name" name="name" defaultValue={petshopData?.name}
                         id="name" placeholder="Petz - Seu Campeão" register={register}
                         disabled />
@@ -66,8 +69,9 @@ export const EditBookingContainer: FC<EditBookingContainerProps> = ({ petshopDat
                         id="booking_time"
                         register={register} placeholder="29/03/2024 14:30"
                         required />
-                    <Button type="submit">Salvar</Button>
+                    <Button className="mt-10" type="submit">Salvar</Button>
                 </form>
+            </div>
         </div>
     )
 }

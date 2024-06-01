@@ -17,17 +17,20 @@ const DASHBOARDITEMS = [
     {
         label: 'Veterinario',
         imgSrc: '/assets/dashboard_vet.png',
-        link: '/vets'
+        link: '/vets',
+        disabled: true
     },
     {
         label: 'Adestramento',
         imgSrc: '/assets/dashboard_adestr.png',
-        link: '/dog-training'
+        link: '/dog-training',
+        disabled: true
     },
     {
         label: 'Cuidados',
         imgSrc: '/assets/dashboard_cuidados.png',
-        link: '/animal-care'
+        link: '/animal-care',
+        disabled: true
     },
     {
         label: 'Adote um Animal',
@@ -51,12 +54,16 @@ interface DashboardItemProps {
         label: string;
         imgSrc: string;
         link: string;
+        disabled?: boolean
     };
 }
 
 const DashboardItem: FC<DashboardItemProps> = ({ item }) => {
     return (
-        <Link href={item.link}>
+        <Link
+            href={item.link}
+            aria-disabled={item.disabled}
+            tabIndex={item.disabled ? -1 : undefined}>
             <div className="flex flex-col items-center justify-center h-40 bg-white shadow-md rounded-md overflow-hidden">
                 <div className="relative w-full h-32">
                     <Image
@@ -67,9 +74,12 @@ const DashboardItem: FC<DashboardItemProps> = ({ item }) => {
                         className="rounded-t-md"
                     />
                 </div>
-                <div className="w-full bg-[#E2CC9B] text-center py-1">
+                {item.disabled ? (<div className={`w-full bg-gray-400 text-center py-1`}>
                     <span className="text-black">{item.label}</span>
-                </div>
+                </div>) : (<div className={`w-full bg-[#E2CC9B] text-center py-1`}>
+                    <span className="text-black">{item.label}</span>
+                </div>)}
+
             </div>
         </Link>
     );
