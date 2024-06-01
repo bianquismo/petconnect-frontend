@@ -29,7 +29,7 @@ export default function SignupPetShopPage() {
 
         const response = await postData(formData);
 
-        router.push(`/petshops/${response.id}`)
+        router.push(`/`)
     };
 
     async function postData(formData: FormData) {

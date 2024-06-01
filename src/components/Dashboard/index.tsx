@@ -60,27 +60,45 @@ interface DashboardItemProps {
 
 const DashboardItem: FC<DashboardItemProps> = ({ item }) => {
     return (
-        <Link
-            href={item.link}
-            aria-disabled={item.disabled}
-            tabIndex={item.disabled ? -1 : undefined}>
-            <div className="flex flex-col items-center justify-center h-40 bg-white shadow-md rounded-md overflow-hidden">
-                <div className="relative w-full h-32">
-                    <Image
-                        src={item.imgSrc}
-                        alt={item.label}
-                        layout="fill"
-                        objectFit="cover"
-                        className="rounded-t-md"
-                    />
-                </div>
-                {item.disabled ? (<div className={`w-full bg-gray-400 text-center py-1`}>
-                    <span className="text-black">{item.label}</span>
-                </div>) : (<div className={`w-full bg-[#E2CC9B] text-center py-1`}>
-                    <span className="text-black">{item.label}</span>
-                </div>)}
+        <>
+            {item.disabled ? (
+                <div className="flex flex-col items-center justify-center h-40 bg-white shadow-md rounded-md overflow-hidden">
+                    <div className="relative w-full h-32">
+                        <Image
+                            src={item.imgSrc}
+                            alt={item.label}
+                            layout="fill"
+                            objectFit="cover"
+                            className="rounded-t-md"
+                        />
+                    </div>
+                    <div className={`w-full bg-gray-400 text-center py-1`}>
+                        <span className="text-black">{item.label}</span>
+                    </div>
 
-            </div>
-        </Link>
+                </div>) : (<Link
+                    href={item.link}
+                    aria-disabled={item.disabled}
+                    tabIndex={item.disabled ? -1 : undefined}>
+                    <div className="flex flex-col items-center justify-center h-40 bg-white shadow-md rounded-md overflow-hidden">
+                        <div className="relative w-full h-32">
+                            <Image
+                                src={item.imgSrc}
+                                alt={item.label}
+                                layout="fill"
+                                objectFit="cover"
+                                className="rounded-t-md"
+                            />
+                        </div>
+                        <div className={`w-full bg-[#E2CC9B] text-center py-1`}>
+                            <span className="text-black">{item.label}</span>
+                        </div>
+
+                    </div>
+                </Link>)
+            }
+        </>
+
+
     );
 }
