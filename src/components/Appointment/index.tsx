@@ -36,6 +36,7 @@ export interface AppointmentListItem {
     pet_shop: {
         name: string;
         address: string;
+        id: string;
     };
 }
 
@@ -48,7 +49,7 @@ const AppointmentListItem: FC<AppointmentListItemProps> = ({ item, onDelete }) =
     const router = useRouter();
 
     const handleEdit = () => {
-        router.push(`/edit-booking/${item.id}`);
+        router.push(`/appointments/${item.id}/edit-booking`);
     };
 
     return (
