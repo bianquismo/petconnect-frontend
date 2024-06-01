@@ -31,9 +31,9 @@ export const EditBookingContainer: FC<EditBookingContainerProps> = ({ petshopDat
     const onSubmit: SubmitHandler<Inputs> = async data => {
         const formData = new FormData();
         formData.append('pet_shop[id]', String(petshopData.id));
-        formData.append('pet_shop[user_id]', String(3));
+        formData.append('pet_shop[user_id]', String(1));
         formData.append('appointment[time]', data.booking_time);
-        formData.append('appointment[user_id]', String(3));
+        formData.append('appointment[user_id]', String(1));
 
         const response = await patchData(formData, id);
         console.log(response);
